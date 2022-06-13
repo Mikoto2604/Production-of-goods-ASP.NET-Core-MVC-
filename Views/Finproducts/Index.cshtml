@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Enterprises_manufacturing_goods.Finproducts>
+
+@{
+    ViewData["Title"] = "Готовая продукция";
+}
+
+<style>
+    a {
+        text-decoration: none;
+        color: green;
+    }
+</style>
+<div class="text-center">
+    <h1 class="display-4">Предприятия по производству кондитерских изделий</h1>
+</div>
+<br />
+<h2>Готовые продукции</h2>
+
+<p>
+    <a asp-action="Create">Добавить новую запись</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Countproducts)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unit)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Countproducts)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitNavigation.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Обновить</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

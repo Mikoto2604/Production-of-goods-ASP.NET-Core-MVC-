@@ -1,0 +1,56 @@
+﻿@model Enterprises_manufacturing_goods.PurchaseOfrawmaterials
+
+@{
+    ViewData["Title"] = "Добавление";
+    
+}
+<style>
+    .Error{
+        color:red;
+        font-size:30px;
+    }
+</style>
+<h1>Создание новой записи</h1>
+<label name="Name"></label>
+<h4>Закупка сырья</h4>
+<div>
+    <p class="Error">@ViewBag.Massage</p>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RawMaterials" class="control-label"></label>
+                <select asp-for="RawMaterials" class ="form-control" asp-items="ViewBag.RawMaterials"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountPur" class="control-label"></label>
+                <input asp-for="CountPur" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="Sum" class="control-label"></label>
+                <input asp-for="Sum" class="form-control" />
+               
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee" class="control-label"></label>
+                <select asp-for="Employee" class ="form-control" asp-items="ViewBag.Employee"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Добавить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Назад</a>
+</div>

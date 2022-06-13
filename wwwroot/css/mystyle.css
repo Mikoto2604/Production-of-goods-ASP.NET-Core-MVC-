@@ -1,0 +1,85 @@
+﻿/************ Menu ************/
+#menu-mobile {
+/* чекбокс скрыт */
+display: none;
+}
+.main-menu {
+/* пункты меню скрыты */
+display: none;
+padding: 0;
+margin: 0;
+}
+.main-menu li {
+/* пункты меню расположены вертикально */
+/* каждый имеет ширину 100% */
+font-size: 16px;
+font-weight: 700;
+/*display: block;*/
+width: 100%;
+}
+.main-menu a {
+/* немного стилизуем ссылки */
+display: block;
+border-bottom: 1px solid #000099;
+color: #000099;
+
+padding: .5em;
+text-decoration: none;
+}
+.main-menu a:hover {
+text-decoration: underline;
+}
+/*****************************************/
+
+.toggle-button {
+text-align: center;
+display: block;
+cursor: pointer;
+font-size: 16px;
+font-weight: 700;
+padding: 10px 20px;
+background-color: #000099;
+color: #fff;
+width: 20%;
+}
+#menu-mobile:checked + nav .toggle-button{
+color: #FFF7B2;
+}
+#menu-mobile:checked + nav .main-menu {
+/* когда чекбокс активен меню становится видимым */
+display: block;
+}
+
+@media screen and (min-width: 640px) {
+.toggle-button {
+/* label скрыт */
+display: none;
+}
+.main-menu {
+display: block;
+margin: 0 auto;
+padding: 0 15%;
+background-color: #000099;
+height: 60px;
+}
+
+.main-menu li {
+/* теги <li> расположены в ряд */
+width: calc(100% / 4);
+text-align: center;
+display: inline-block;
+margin-right: -4px;
+padding-top: 10px;
+}
+.main-menu a {
+display: inline-block;
+margin-right: -4px;
+font-size: 18px;
+font-weight: 700;
+background-color: #000099;
+text-decoration: none;
+color: #fff;
+text-transform: capitalize;
+border-bottom: 0;
+}
+}

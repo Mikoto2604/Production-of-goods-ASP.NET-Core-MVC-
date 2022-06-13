@@ -1,0 +1,37 @@
+﻿@model Enterprises_manufacturing_goods.Ingredients
+
+@{
+    ViewData["Title"] = "Добавление";
+}
+
+<h1>Создание новой записи</h1>
+
+<h4>Ингредиенты</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Product" class="control-label"></label>
+                <select asp-for="Product" class ="form-control" asp-items="ViewBag.Product"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="RawMaterials" class="control-label"></label>
+                <select asp-for="RawMaterials" class ="form-control" asp-items="ViewBag.RawMaterials"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Countingred" class="control-label"></label>
+                <input asp-for="Countingred" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Добавить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Назад</a>
+</div>

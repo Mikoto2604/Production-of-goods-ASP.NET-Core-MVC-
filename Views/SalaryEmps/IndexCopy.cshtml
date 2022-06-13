@@ -1,0 +1,225 @@
+﻿@model IEnumerable<Enterprises_manufacturing_goods.Models.SalaryEmp>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    body {
+        font-size: 13px;
+    }
+
+    a {
+        text-decoration: none;
+        color: green;
+    }
+
+    h1 {
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .Back {
+        font-size: 20px;
+    }
+
+    .allsumm, em {
+        color: green;
+    }
+    /* .sub{
+      width:auto;
+      font-size:
+        background-color:green;
+        color:black;
+    }*/
+
+    .error {
+        color: red;
+        font-size: 25px;
+        text-align: center;
+    }
+</style>
+
+<div class="text-center">
+    <h1 class="display-4">Предприятия по производству кондитерских изделий</h1>
+</div>
+<br />
+<style>
+    .Error {
+        color: red;
+        font-size: 30px;
+    }
+</style>
+<br />
+
+<h2>Зарплата</h2>
+<br />
+<div class="Error">
+    <p>@ViewBag.Message</p>
+
+</div>
+<div class="Error">
+
+    <p>@ViewBag.Message1</p>
+</div>
+<br />
+
+@*<p>
+    <a asp-action="Create">Добавить запись</a>
+    <input type="hidden" id="IDY" name="yearString" />
+    <input type="hidden" id="IDM" name="monthString" />
+    <input type="submit" value="Выдать зарплату" onclick="func()" class="btn btn-secondary Button-2">
+</p>*@
+
+<form asp-action="IndexCopy" name="frm" method="get">
+    <p>
+        <main class="container-fluid pt-3">
+            <div class="d-flex justify-content-end">
+
+                <div class="row g-3">
+                    @Html.DropDownList("yearString", ViewBag.Year as SelectList, "Выберите год", new { @id = "Ye", @class = "form-control", style = "width:auto;" })
+                   
+                    <div class="col-auto">
+                        @Html.DropDownList("monthString", ViewBag.Month as SelectList, "Выберите месяц", new { @id = "Mo", @class = "form-control", style = "width:auto;" })
+                       
+                    </div>
+                    <div>
+                        <a asp-action="Index" class="btn btn-dark">Назад</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </p>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $("#Mo").change(function () {
+        $("#Mo").val = $("#Mo");
+      
+        let form = document.forms.frm
+        form.submit();
+
+    });
+    function func() {
+        let selectY = $('#Ye option:selected').val();
+        let selectM = $('#Mo option:selected').val();
+        let input = document.querySelector("#IDY");
+        input.value = selectY;
+        let input2 = document.querySelector("#IDM");
+        input2.value = selectM;
+    }
+
+    function func2() {
+        let selectY = $('#Ye option:selected').val();
+        let selectM = $('#Mo option:selected').val();
+        let input = document.querySelector("#IDYY");
+        input.value = selectY;
+        let input2 = document.querySelector("#IDMM");
+        input2.value = selectM;
+    }
+</script>
+<div class="d-flex justify-content-between">
+
+    <div class="row g-3">
+        <form asp-action="IndexCopyAdd">
+            <input type="hidden" id="IDY" name="yearString" />
+            <input type="hidden" id="IDM" name="monthString" />
+            <input type="submit" value="Выдать зарплату" onclick="func()" class="btn btn-secondary Button-2">
+        </form>
+        <br />
+        
+        </div>
+    </div>
+<br />
+        <body>
+
+            <table class="table">
+                <thead class="tbl">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Employee)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ParticipationPurchase)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ParticipationSale)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ParticipationProduction)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CountParticipation)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SalaryEmployee)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Bonus)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalAmount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Issued)
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmployeeNavigation.Fullname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ParticipationPurchase)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ParticipationSale)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ParticipationProduction)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CountParticipation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SalaryEmployee)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Bonus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalAmount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Issued)
+                        </td>
+
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Обновить</a>|<a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="error">
+                <p>
+                    @ViewBag.Show
+                </p>
+            </div>
+            <div class="allsumm">
+                @foreach (string sum in ViewBag.Summa)
+                {
+                    <h4>Общая сумма всех сотрудников:  <em>@sum</em></h4>
+                }
+            </div>
+        </body>
+

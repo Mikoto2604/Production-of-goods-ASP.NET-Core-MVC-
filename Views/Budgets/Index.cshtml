@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Enterprises_manufacturing_goods.Budgets>
+
+@{
+    ViewData["Title"] = "Бюджет";
+}
+<div class="text-center">
+    <h1 class="display-4">Предприятия по производству кондитерских изделий</h1>
+</div>
+
+<br />
+<h2>Бюджет</h2>
+<style>
+    a {
+        text-decoration: none;
+        color: green;
+    }
+
+    h1 {
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+    }
+</style>
+<p>
+    <a asp-action="Create">Добавить новую запись</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Budgetamount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalePercentage)
+            </th>
+            <th>
+                    @Html.DisplayNameFor(model => model.Bonus)
+                </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Budgetamount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalePercentage)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Bonus)
+                    </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Обновить</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

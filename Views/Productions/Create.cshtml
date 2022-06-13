@@ -1,0 +1,53 @@
+﻿@model Enterprises_manufacturing_goods.Production
+
+@{
+    ViewData["Title"] = "Добавление";
+}
+
+<style>
+    .Error{
+        color:red;
+        font-size:30px;
+    }
+</style>
+
+<h1>Создание новой записи</h1>
+<br />
+<div class="Error">
+    <p>@ViewBag.Message</p>
+</div>
+<br />
+<h4>Производство</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Product" class="control-label"></label>
+                <select asp-for="Product" class="form-control" asp-items="ViewBag.Product"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountProduction" class="control-label"></label>
+                <input asp-for="CountProduction" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee" class="control-label"></label>
+                <select asp-for="Employee" class="form-control" asp-items="ViewBag.Employee"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Добавить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Назад</a>
+</div>

@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Enterprises_manufacturing_goods.Ingredients>
+
+
+
+
+@{
+    ViewData["Title"] = "Ингредиенты";
+
+}
+<style>
+    a {
+        text-decoration: none;
+        color: green;
+    }
+
+    h1 {
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+    }
+</style>
+<div class="text-center">
+    <h1 class="display-4">Предприятия по производству кондитерских изделий</h1>
+</div>
+<br />
+<h2>Ингредиенты</h2>
+
+<form asp-action="IndexCopy" method="get" name="frm">
+    <div class="form-actions no-color">
+        <div class="form-actions no-color">
+            @Html.DropDownList("SearchString", ViewBag.Product as SelectList, "Все продукты", new { @id = "Selectt", @class = "form-control", style = "width: 20%;"})
+            
+        </div>
+    </div>
+</form>
+
+
+    <script>
+       
+            $("select").change(function () {
+                $("select").val = $("select");
+                let form = document.forms.frm
+                form.submit();
+            });
+        function func() {
+            let select = $('#Selectt option:selected').val();
+            let input = document.querySelector("#test");
+            input.value = select;
+        }
+        
+  </script>
+
+    <form asp-action="Create" method="get">
+        <input type="hidden" id="test" name="ID" />
+        <input type="submit" value="Добавить новую запись" onclick="func()" class="btn btn-dark">
+    </form>
+
+    <table class="table">
+
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.RawMaterials)
+                </th>
+
+                <th>
+
+                    @Html.DisplayNameFor(model => model.Countingred)
+                </th>
+
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="recruiter">
+            @foreach (var item in Model)
+            {
+                <tr class="recruiter-info" data-custom-type="@Html.DisplayFor(modelItem => item.ProductNavigation.Id)">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RawMaterialsNavigation.Name)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Countingred)
+                    </td>
+
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Обновить</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    @*<script>
+        //Filter Recruiters
+        $('select#sort-recruiters').change(function () {
+            var filter = $(this).val();
+            filterList(filter);
+        });
+
+        // Recruiters filter function
+        function filterList(value) {
+            var list = $(".recruiter .recruiter-info");
+            $(list).hide();
+            if (value == "All") {
+                $(".recruiter").find("tr").each(function (i) {
+                    $(this).show();
+                });
+            } else {
+                // *=" means that if a data-custom type contains multiple values, it will find them
+                $(".recruiter").find("tr[data-custom-type*=" + value + "]").each(function (i) {
+                    $(this).show();
+                });
+            }
+        }</script>*@

@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Enterprises_manufacturing_goods.Models.SalaryEmp>
+
+@{
+    ViewData["Title"] = "IndexCopyAdd";
+}
+
+<style>
+    body {
+        font-size: 13px;
+    }
+
+    a {
+        text-decoration: none;
+        color: green;
+    }
+
+    h1 {
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .Back {
+        font-size: 20px;
+    }
+
+    .allsumm, em {
+        color: green;
+    }
+    /* .sub{
+      width:auto;
+      font-size:
+        background-color:green;
+        color:black;
+    }*/
+
+    .error {
+        color: red;
+        font-size: 25px;
+        text-align: center;
+    }
+</style>
+
+<div class="text-center">
+    <h1 class="display-4">Предприятия по производству кондитерских изделий</h1>
+</div>
+<br />
+<style>
+    .Error {
+        color: red;
+        font-size: 30px;
+    }
+</style>
+<br />
+
+<h2>Зарплата</h2>
+<br />
+<div class="Error">
+    <p>@ViewBag.Message</p>
+
+</div>
+<div class="Error">
+
+    <p>@ViewBag.Message1</p>
+</div>
+<br />
+
+<form asp-action="IndexCopyAdd" name="frm" method="get">
+    <p>
+        <main class="container-fluid pt-3">
+            <div class="d-flex justify-content-end">
+
+                <div class="row g-3">
+                    @Html.DropDownList("yearString", ViewBag.Year as SelectList, "Выберите год", new { @id = "Ye", @class = "form-control", style = "width:auto;" })
+                    
+                    <div class="col-auto">
+                        @Html.DropDownList("monthString", ViewBag.Month as SelectList, "Выберите месяц", new { @id = "Mo", @class = "form-control", style = "width:auto;" })
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </main>
+    </p>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $("#Mo").change(function () {
+        $("#Mo").val = $("#Mo");
+        
+        let form = document.forms.frm
+        form.submit();
+    });
+    function func() {
+        let selectY = $('#Ye option:selected').val();
+        let selectM = $('#Mo option:selected').val();
+        let input = document.querySelector("#IDY");
+        input.value = selectY;
+        let input2 = document.querySelector("#IDM");
+        input2.value = selectM;
+    }
+
+    function func2() {
+        let selectY = $('#Ye option:selected').val();
+        let selectM = $('#Mo option:selected').val();
+        let input = document.querySelector("#IDYY");
+        input.value = selectY;
+        let input2 = document.querySelector("#IDMM");
+        input2.value = selectM;
+    }
+</script>
+<div class="d-flex justify-content-between">
+
+</div>
+<br />
+

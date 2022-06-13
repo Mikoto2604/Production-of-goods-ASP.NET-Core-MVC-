@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Enterprises_manufacturing_goods.Employees>
+
+@{
+    ViewData["Title"] = "Сотрудники";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Предприятия по производству кондитерских изделий</h1></div>
+<br /><h2>Список сотрудников</h2>
+
+<style>
+    a{
+        text-decoration:none;
+        color:green;
+    }
+    h1 {
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+    }
+</style>
+<p>
+   <a asp-action="Create">Добавить новую запись</a>
+</p>
+
+<style>
+</style>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fullname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PositionNavigation.Position)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Обновить</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

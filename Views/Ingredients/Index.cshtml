@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Enterprises_manufacturing_goods.Ingredients>
+
+@{
+    ViewData["Title"] = "Ингредиенты";
+
+}
+<style>
+    a {
+        text-decoration: none;
+        color: green;
+    }
+
+    h1 {
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+    }
+</style>
+<div class="text-center">
+    <h1 class="display-4">Предприятия по производству кондитерских изделий</h1>
+</div>
+<br />
+<h2>Ингредиенты</h2>
+
+<form asp-action="Index" method="get" name="frm">
+
+    <div class="form-actions no-color">
+        @Html.DropDownList("SearchString", ViewBag.Product as SelectList, "Все продукты", new { @id = "Selectt", @class = "form-control", style = "width: 20%;" })
+
+    </div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $("select").change(function () {
+        $("select").val = $("select");
+        let form = document.forms.frm
+        form.submit();
+    });
+
+    $('.Button-2').ready(() => {
+        let select = $('#Selectt option:selected').val();
+        let input = document.querySelector("#IDProduct");
+        input.value = select;
+    });
+
+</script>
+<form asp-action="Create" method="get">
+    <input type="hidden" id="IDProduct" name="ID" />
+    <input type="submit" value="Добавить новую запись" class="btn btn-dark Button-2">
+</form>
+<table class="table">
+
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.RawMaterials)
+            </th>
+
+            <th>
+
+                @Html.DisplayNameFor(model => model.Countingred)
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="recruiter">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RawMaterialsNavigation.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Countingred)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Обновить</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

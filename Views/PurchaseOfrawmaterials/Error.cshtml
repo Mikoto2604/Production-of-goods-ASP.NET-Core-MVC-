@@ -1,0 +1,45 @@
+﻿
+
+@{
+    ViewData["Title"] = "Сообщение";
+}
+
+<style>
+    a {
+        text-decoration: none;
+        color: green;
+    }
+
+    h1 {
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    .error {
+        text-align: center;
+        color: red;
+        font-size: 30px;
+        float: right;
+    }
+    .fig {
+        float: left;
+    }
+    .bnt {
+        text-align: center; /* Выравнивание по центру */
+    }
+</style>
+<div class="text-center">
+    <h1 class="display-4">Предприятия по производству товаров</h1>
+</div>
+<br />
+<br />
+
+
+<h2 class="error">
+                            Ошибка!
+    Сумма превышает бюджет! Введите сумму меньше, чем бюджет!
+</h2>
+
+<div class="bnt">
+    <a asp-action="Create">Повторный ввод</a>
+</div>
+
